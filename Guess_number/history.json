@@ -16,5 +16,11 @@
         "Game range": "0-50",
         "Attempt": 7,
         "Time Taken": 14.97
+    },
+    {
+        "Game Type": "Easy",
+        "Game range": "0-50",
+        "Attempt": 4,
+        "Time Taken": 16.03
     }
 ]

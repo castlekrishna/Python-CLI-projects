@@ -8,12 +8,23 @@ def line():
 def game(starting_number,ending_number,attempt):
     start_time = time.time()
     computer_number = random.randint(starting_number,ending_number)
+    # hint = 2 upgrade
     while True:
+        user_input = input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}) or type 'hint': ")
+        line()
+        if user_input.lower() == "hint":
+            if computer_number % 2 == 0:
+                print("Number is even")
+                line()
+            else:
+                print("Number is odd")
+                line()
+            continue
         try:
-            user_input = int(input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}): "))
+            user_input = int(user_input)
             line()
         except:
-            print(f"write number in {starting_number} ≤ number ≤ {ending_number} range")
+            print(f"write number in {starting_number} ≤ number ≤ {ending_number} range or type 'hint'")
             line()
         else:
             if user_input == computer_number:
