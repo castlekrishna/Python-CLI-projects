@@ -1,5 +1,6 @@
 import random
 import time
+import json
 def line():
     print("-"*50)
 
@@ -12,7 +13,7 @@ def game(starting_number,ending_number,attempt):
             user_input = int(input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}): "))
             line()
         except:
-            print("write number in {starting_number} ≤ number ≤ {ending_number} range")
+            print(f"write number in {starting_number} ≤ number ≤ {ending_number} range")
             line()
         else:
             if user_input == computer_number:
@@ -22,7 +23,7 @@ def game(starting_number,ending_number,attempt):
                 total_time = round(end_time-start_time,2)
                 print(f"Time taken: {total_time} seconds")
                 line()
-                break
+                return total_time,attempt
             elif ending_number < user_input or user_input < starting_number:
                 print(f"Bro... atleast write number in {starting_number} ≤ number ≤ {ending_number} range")
                 line()
@@ -36,6 +37,7 @@ def game(starting_number,ending_number,attempt):
                 print("Invalid input...")
                 line()
             attempt += 1
+            
         
 #game options
 def gameoptions():
@@ -52,11 +54,11 @@ def gameoptions():
         else:
             while True:
                 if choice == 1:
-                    return 0,50
+                    return 0,50,"Easy"
                 elif choice == 2:
-                    return(0,100)
+                    return 0,100,"Medium"
                 elif choice == 3:
-                    return(0,500)
+                    return 0,500,"Hard"
                 elif choice == 4:
                     try:
                         starting_number = int(input("Enter starting number: "))
@@ -75,9 +77,36 @@ def gameoptions():
                                 print("Ending point is less than starting point.. please enter a valid input..!!")
                                 line()
                             else:
-                                return starting_number,ending_number
+                                return starting_number,ending_number,"Custom"
                 elif choice == 0:
                     return None
+                
+# saving history
+def save_history(game_type,starting_point,ending_point,attempt,time_taken):
+    data = {
+        "Game Type" : game_type,
+        "Game range" : f"{starting_point}-{ending_point}",
+        "Attempt" : attempt,
+        "Time Taken" : time_taken
+    }
+    try:
+        with open ("history.json","r") as f:
+            past_data = json.load(f)
+    except:
+        past_data = []
+    past_data.append(data)
+    with open("history.json","w") as f:
+        json.dump(past_data,f,indent=4)
+#show history
+def show_history():
+    with open("history.json","r") as f:
+        data = json.load(f)
+    for item in data:
+        print("Game Type: ", item["Game Type"])
+        print("Game range: ", item["Game range"])
+        print("Attempt: ", item["Attempt"])
+        print("Time Taken: ", item["Time Taken"])
+        line()
 #main
 line()
 print(" "*15,"Number Guessing Game", " "*20)
@@ -99,7 +128,13 @@ while True:
                 print("Exiting...!!")
                 line()
             else:
-                game(*parameter,1)
+                starting_point,ending_point,game_type = parameter
+                game_data = game(starting_point,ending_point,1)
+                total_time,attempt = game_data
+                save_history(game_type,starting_point,ending_point,attempt,total_time)
+        elif choice == 3:
+            show_history()
+            line()
         elif choice == 0:
             print("Thanks for playing...")
             line()
