@@ -1,32 +1,42 @@
 import random
+import time
 def line():
     print("-"*50)
 
 # game
 def game(starting_number,ending_number,attempt):
+    start_time = time.time()
     computer_number = random.randint(starting_number,ending_number)
     while True:
-        user_input = int(input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}): "))
-        line()
-        if user_input == computer_number:
-            print("Yaayyy...You guessed the number right")
-            print(f"Attempt taken: {attempt}")
+        try:
+            user_input = int(input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}): "))
             line()
-            break
-        elif ending_number < user_input or user_input < starting_number:
-            print(f"Bro... atleast write number in {starting_number} ≤ number ≤ {ending_number} range")
-            line()
-        elif user_input>computer_number:
-            print("Lower")
-            line()
-        elif user_input < computer_number:
-            print("Higher")
+        except:
+            print("write number in {starting_number} ≤ number ≤ {ending_number} range")
             line()
         else:
-            print("Invalid input...")
-            line()
-        attempt += 1
-
+            if user_input == computer_number:
+                end_time = time.time()
+                print("Yaayyy...You guessed the number right")
+                print(f"Attempt taken: {attempt}")
+                total_time = round(end_time-start_time,2)
+                print(f"Time taken: {total_time} seconds")
+                line()
+                break
+            elif ending_number < user_input or user_input < starting_number:
+                print(f"Bro... atleast write number in {starting_number} ≤ number ≤ {ending_number} range")
+                line()
+            elif user_input>computer_number:
+                print("Lower")
+                line()
+            elif user_input < computer_number:
+                print("Higher")
+                line()
+            else:
+                print("Invalid input...")
+                line()
+            attempt += 1
+        
 #game options
 def gameoptions():
     print("Choose difficulty\n1. Easy\n2. Medium\n3. Hard\n4. Custom\n0. Exit")
@@ -38,38 +48,42 @@ def gameoptions():
         except:
             print("Enter correct choice...")
             line()
+            continue
         else:
-            if choice == 1:
-                return 0,50
-            elif choice == 2:
-                return(0,100)
-            elif choice == 3:
-                return(0,500)
-            elif choice == 4:
-                try:
-                    starting_number = int(input("Enter starting number: "))
-                except:
-                    print("Invalid input...!!")
-                    line()
-                else:
+            while True:
+                if choice == 1:
+                    return 0,50
+                elif choice == 2:
+                    return(0,100)
+                elif choice == 3:
+                    return(0,500)
+                elif choice == 4:
                     try:
-                        ending_number = int(input("Enter ending number: "))
+                        starting_number = int(input("Enter starting number: "))
                     except:
                         print("Invalid input...!!")
                         line()
                     else:
-                        if starting_number > ending_number:
-                            print("Ending point is less than starting point.. please enter a valid input..!!")
+                        try:
+                            ending_number = int(input("Enter ending number: "))
+                            line()
+                        except:
+                            print("Invalid input...!!")
+                            line()
                         else:
-                            return starting_number,ending_number
-            elif choice == 0:
-                return
+                            if starting_number > ending_number:
+                                print("Ending point is less than starting point.. please enter a valid input..!!")
+                                line()
+                            else:
+                                return starting_number,ending_number
+                elif choice == 0:
+                    return None
 #main
 line()
 print(" "*15,"Number Guessing Game", " "*20)
 line()
 while True:
-    print("1. Play\n2. Stats\n0. Exit")
+    print("1. Play\n2. Stats\n3. History\n0. Exit")
     line()
     try:
         choice = int(input(("Enter Index: ")))
@@ -81,8 +95,9 @@ while True:
     else:
         if choice == 1:
             parameter = gameoptions()
-            if gameoptions is None:
+            if parameter is None:
                 print("Exiting...!!")
+                line()
             else:
                 game(*parameter,1)
         elif choice == 0:
