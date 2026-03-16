@@ -3,13 +3,15 @@ def printline():
     print("-"*50)
 
 
+
 def game():
+    computer_number = random.randint(0,100) 
     count = 1
     while True:
         user_input = int(input("Enter a number (0 ≤ number ≤ 100): "))
         printline()
         if user_input == computer_number:
-            print("damnnn...You guessed the number right")
+            print("Yaayyyy...You guessed the number right")
             print(f"Attempt taken: {count}")
             printline()
             break
@@ -19,15 +21,11 @@ def game():
         elif user_input>computer_number:
             print("Lower")
             printline()
-        elif user_input < computer_number:
-            print("Higher")
-            printline()
         else:
-            print("Invalid input...")
+            print("Higher")
             printline()
         count += 1
 
-computer_number = random.randint(0,100)
 printline()
 print(" "*15,"Number Guessing Game", " "*20)
 printline()
