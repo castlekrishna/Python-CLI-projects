@@ -1,14 +1,20 @@
 [
     {
-        "Game Type": "Custom",
-        "Game range": "25-25",
-        "Attempt": 1,
-        "Time Taken": 0.82
+        "Game Type": "Easy",
+        "Game range": "0-50",
+        "Attempt": 6,
+        "Time Taken": 12.09
     },
     {
-        "Game Type": "Custom",
-        "Game range": "25-25",
-        "Attempt": 1,
-        "Time Taken": 0.66
+        "Game Type": "Medium",
+        "Game range": "0-100",
+        "Attempt": 10,
+        "Time Taken": 20.62
+    },
+    {
+        "Game Type": "Easy",
+        "Game range": "0-50",
+        "Attempt": 7,
+        "Time Taken": 14.97
     }
 ]

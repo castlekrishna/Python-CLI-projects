@@ -99,20 +99,99 @@ def save_history(game_type,starting_point,ending_point,attempt,time_taken):
         json.dump(past_data,f,indent=4)
 #show history
 def show_history():
-    with open("history.json","r") as f:
-        data = json.load(f)
-    for item in data:
-        print("Game Type: ", item["Game Type"])
-        print("Game range: ", item["Game range"])
-        print("Attempt: ", item["Attempt"])
-        print("Time Taken: ", item["Time Taken"])
+    try:
+        with open("history.json","r") as f:
+            data = json.load(f)
+            return data
+    except:
+        return None
+#stats
+def stats():
+    data = show_history()
+    if data is None:
+        print("Play a game first.")
         line()
+    else:
+        total_game = len(data)
+        attempts = 0
+        total_time_taken = 0
+        for item in data:
+            attempts += item["Attempt"]
+            total_time_taken += item["Time Taken"]
+        print(f"Total game: {total_game}")
+        print(f"Average attempt: {attempts/total_game:.2f}")
+        print(f"Average time taken: {total_time_taken/total_game:.2f}")
+        line()
+#setting
+def setting():
+    while True:
+        try:
+            print("1. Clear all game records\n2. User manual\n3. About game\n0. Exit")
+            line()
+            choice = int(input("Choose index: "))
+            line()
+        except:
+            line()
+            print("Choose correct index...")
+            line()
+        else:
+            if choice == 1:
+                with open ("history.json","w") as r:
+                    print("All data cleared")
+                    line()
+                    break
+            elif choice == 2:
+                print("""NUMBER GUESSING GAME — USER MANUAL
+
+                1. Play
+                Choose a difficulty level (Easy, Medium, Hard, or Custom).
+                The computer will generate a random number within the selected range.
+                Enter guesses until you find the correct number.
+                The game will tell you whether to guess Higher or Lower.
+
+                2. Stats
+                Displays overall statistics including:
+
+                * Total games played
+                * Average number of attempts
+                * Average time taken
+
+                3. History
+                Shows records of previous games including:
+
+                * Game mode
+                * Number range
+                * Attempts taken
+                * Time taken
+
+                4. Settings
+                Allows you to manage the game data:
+
+                * Clear all saved game records
+                * View information about the game
+                * Exit the settings menu
+
+                5. Exit
+                Closes the game safely.
+
+                Note:
+                Enter numbers only. Invalid inputs will be rejected and you will be asked to try again.
+                """)
+                line()
+            elif choice == 3:
+                print("Number Guessing Game built with Python.\nGuess the correct number within a selected range.\nThe game tracks attempts, time taken, and saves history using JSON.")
+                line()
+            elif choice == 0:
+                print("Exiting...")
+                line()
+                return
+
 #main
 line()
 print(" "*15,"Number Guessing Game", " "*20)
 line()
 while True:
-    print("1. Play\n2. Stats\n3. History\n0. Exit")
+    print("1. Play\n2. Stats\n3. History\n4. Setting\n0. Exit")
     line()
     try:
         choice = int(input(("Enter Index: ")))
@@ -132,9 +211,18 @@ while True:
                 game_data = game(starting_point,ending_point,1)
                 total_time,attempt = game_data
                 save_history(game_type,starting_point,ending_point,attempt,total_time)
+        elif choice ==2:
+            stats()
         elif choice == 3:
-            show_history()
-            line()
+            data = show_history()
+            for item in data:
+                print("Game Type: ", item["Game Type"])
+                print("Game range: ", item["Game range"])
+                print("Attempt: ", item["Attempt"])
+                print("Time Taken: ",item["Time Taken"],"seconds")
+                line()
+        elif choice ==4:
+            setting()
         elif choice == 0:
             print("Thanks for playing...")
             line()
