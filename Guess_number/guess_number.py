@@ -226,12 +226,16 @@ while True:
             stats()
         elif choice == 3:
             data = show_history()
-            for item in data:
-                print("Game Type: ", item["Game Type"])
-                print("Game range: ", item["Game range"])
-                print("Attempt: ", item["Attempt"])
-                print("Time Taken: ",item["Time Taken"],"seconds")
+            if data is None:
+                print("Play a game first...")
                 line()
+            else:
+                for item in data:
+                    print("Game Type: ", item["Game Type"])
+                    print("Game range: ", item["Game range"])
+                    print("Attempt: ", item["Attempt"])
+                    print("Time Taken: ",item["Time Taken"],"seconds")
+                    line()
         elif choice ==4:
             setting()
         elif choice == 0:
