@@ -8,8 +8,20 @@ def welcome_message():
     line()
 
 def capture_responce():
-    responce = input("y or n: ")
-    return responce
+    while True:
+        try:
+            responce = input("y or n: ").lower().strip()
+            if responce == "y" or responce == "n":
+                line()
+                return responce
+            else:
+                line()
+                print("Enter correct input...")
+                line()
+        except:
+            line()
+            print("Enter correct input...!!")
+            line()
 
 def assign_number():
     num = random.randint(1,3)
@@ -22,3 +34,19 @@ def assign_number():
 #             return responce
 #         else:
 #             print("Enter correct input: ")
+
+def index_responce(start,end):
+    while True:
+        try:
+            user_responce = int(input("Enter index: ").strip())
+            if start <= user_responce <= end:
+                line()
+                return user_responce
+            else:
+                line()
+                print("Enter correct input...")
+                line()
+        except:
+            line()
+            print("Enter correct input...!!")
+            line()
