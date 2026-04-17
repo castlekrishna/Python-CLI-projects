@@ -11,7 +11,6 @@ def game(starting_number,ending_number,attempt):
     # hint = 2 upgrade
     while True:
         user_input = input(f"Enter a number ({starting_number} ≤ number ≤ {ending_number}) or type 'hint': ")
-        line()
         if user_input.lower() == "hint":
             if computer_number % 2 == 0:
                 print("Number is even")
@@ -137,7 +136,7 @@ def stats():
 def setting():
     while True:
         try:
-            print("1. Clear all game records\n2. User manual\n3. About game\n0. Exit")
+            print("1. Clear all game records (Danger)\n2. User manual\n3. About game\n0. Exit")
             line()
             choice = int(input("Choose index: "))
             line()

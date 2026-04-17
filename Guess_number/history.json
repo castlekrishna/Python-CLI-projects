@@ -1,32 +1,26 @@
 [
     {
-        "Game Type": "Easy",
-        "Game range": "0-50",
-        "Attempt": 6,
-        "Time Taken": 12.09
+        "Game Type": "Hard",
+        "Game range": "0-500",
+        "Attempt": 11,
+        "Time Taken": 26.88
     },
     {
-        "Game Type": "Medium",
-        "Game range": "0-100",
-        "Attempt": 10,
-        "Time Taken": 20.62
+        "Game Type": "Hard",
+        "Game range": "0-500",
+        "Attempt": 9,
+        "Time Taken": 20.95
+    },
+    {
+        "Game Type": "Custom",
+        "Game range": "0-500",
+        "Attempt": 17,
+        "Time Taken": 33.1
     },
     {
         "Game Type": "Easy",
         "Game range": "0-50",
         "Attempt": 7,
-        "Time Taken": 14.97
-    },
-    {
-        "Game Type": "Easy",
-        "Game range": "0-50",
-        "Attempt": 4,
-        "Time Taken": 16.03
-    },
-    {
-        "Game Type": "Easy",
-        "Game range": "0-50",
-        "Attempt": 5,
-        "Time Taken": 15.66
+        "Time Taken": 15.09
     }
 ]
