@@ -1,4 +1,5 @@
 import random
+import balancee
 def line():
     print("-"*50)
 def welcome_message():
@@ -23,17 +24,10 @@ def capture_responce():
             print("Enter correct input...!!")
             line()
 
-def assign_number():
-    num = random.randint(1,3)
+def assign_number(start,end):
+    num = random.randint(start,end)
     return num
 
-# def confirm_responce(responce):
-#     if responce == "n":
-#         responce=input("Are you sure?(y or n): ").lower().strip()
-#         if responce == "y" or responce == "n":
-#             return responce
-#         else:
-#             print("Enter correct input: ")
 
 def index_responce(start,end):
     while True:
@@ -50,3 +44,15 @@ def index_responce(start,end):
             line()
             print("Enter correct input...!!")
             line()
+
+def print_lost(bet_amount,multiplier):
+    print(f"You Won... (+{bet_amount*multiplier} chips)")
+    balancee.win(bet_amount*multiplier)
+    print(f"Current balance: {balancee.show_balance()}")
+    line()
+
+def print_win(bet_amount,multiplier):
+    print(f"You Won... (+{bet_amount*multiplier} chips)")
+    balancee.win(bet_amount*multiplier)
+    print(f"Current balance: {balancee.show_balance()}")
+    line()

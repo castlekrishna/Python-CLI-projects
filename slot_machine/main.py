@@ -1,10 +1,11 @@
-import utils
-import slot1
-import setting
-import router
+import utils,setting,router,balancee
+
 def main():
     utils.welcome_message()
     while True:
+        print(balancee.show_user())
+        print(f"Balance: {balancee.show_balance()}")
+        
         print("""
             1. Play
             2. Setting
