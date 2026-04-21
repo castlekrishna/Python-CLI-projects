@@ -29,7 +29,7 @@ def assign_number(start,end):
     return num
 
 
-def index_responce(start,end):
+def index_responce(start,end,index):
     while True:
         try:
             user_responce = int(input("Enter index: ").strip())
@@ -39,15 +39,17 @@ def index_responce(start,end):
             else:
                 line()
                 print("Enter correct input...")
+                print(index)
                 line()
         except:
             line()
-            print("Enter correct input...!!")
+            print("Enter responce in integer...!!")
+            print(index)
             line()
 
-def print_lost(bet_amount,multiplier):
-    print(f"You Won... (+{bet_amount*multiplier} chips)")
-    balancee.win(bet_amount*multiplier)
+def print_lost(bet_amount):
+    print(f"You lost... (-{bet_amount} chips)")
+    balancee.lost(bet_amount)
     print(f"Current balance: {balancee.show_balance()}")
     line()
 

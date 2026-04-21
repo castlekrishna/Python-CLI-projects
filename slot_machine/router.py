@@ -1,21 +1,23 @@
 import slot1,slot2,utils
 def play():
     while True:
-        print("""
+        index = ("""
             What do you wanna play?
                 1. Slot1 (3*1)
                 2. Slot2 (3*3)
                 3. exit
             """)
+        print(index)
         utils.line()
-        try:
-            responce = int(int(input("Enter index: ").strip()))
-        except:
-            print("Enter integer...")
-            utils.line()
+        
+        responce = utils.index_responce(1,3,index)
+        
         if responce == 1:
             slot1.slot()
-        if responce == 2:
+        elif responce == 2:
             slot2.slot()
-        if responce == 3:
+        elif responce == 3:
             return
+        else:
+            print("Invalid input...")
+            utils.line()

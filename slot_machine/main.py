@@ -6,12 +6,13 @@ def main():
         print(balancee.show_user())
         print(f"Balance: {balancee.show_balance()}")
         
-        print("""
+        main_index=("""
             1. Play
             2. Setting
             3. Exit
         """)
-        user_responce = utils.index_responce(1,3)
+        print(main_index)
+        user_responce = utils.index_responce(1,3,main_index)
         if user_responce == 1:
             router.play()
         elif user_responce == 2:
@@ -25,6 +26,8 @@ def main():
             if responce == "n":
                 print("Cancelled operation")
                 continue
+        else:
+            print("Invalid input...")
 
 if __name__=="__main__":
     main()
